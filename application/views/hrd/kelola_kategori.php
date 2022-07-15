@@ -37,7 +37,7 @@
                             <td><?= $p['bobot_kategori']; ?></td>
                             <td>
                                 <a class="btn btn-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="<?= base_url(); ?>hrd/ubah_kategori/<?php echo $p['id_kategori'] ?> "><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-danger btn-sm tombol-hapus-kategori" type="button" data-toggle="tooltip" data-placement="top" title="Delete" href="<?php base_url(); ?>hrd/delete_kategori/ <?php echo $p['id_kategori'] ?> "><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-danger btn-sm tombol-hapus-kategori" type="button" data-toggle="tooltip" data-placement="top" title="Delete" href="<?= base_url(); ?>hrd/delete_kategori/<?php echo $p['id_kategori'] ?> "><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php $i++; ?>

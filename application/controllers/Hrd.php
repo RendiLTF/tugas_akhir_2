@@ -175,6 +175,13 @@ class Hrd extends CI_Controller
         }
     }
 
+    public function delete_kategori($id_kategori)
+    {
+        // $this->Hrd_model->deleteDataSubKriteriByIdKategori($id_kategori);
+        $this->Hrd_model->deleteDataKategori($id_kategori);
+        redirect('hrd/kelola_kategori');
+    }
+
     public function delete_kriteria($id_kriteria)
     {
         $this->Hrd_model->deleteDataSubKriteriByIdKriteria($id_kriteria);

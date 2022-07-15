@@ -23,6 +23,12 @@ class Hrd_model extends CI_Model
         $this->db->delete('tb_karyawan', ['id_karyawan' => $id_karyawan]);
     }
 
+    public function deleteDataKategori($id_kategori)
+    {
+        // $this->db->where('id', $id);
+        $this->db->delete('tb_kategori', ['id_kategori' => $id_kategori]);
+    }
+
     public function deleteDataKriteria($id_kriteria)
     {
         // $this->db->where('id', $id);
