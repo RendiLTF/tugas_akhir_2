@@ -22,6 +22,9 @@
               <a class="nav-link" href="<?= base_url('hrd/index'); ?>">
                   <i class="fas fa-fw fa-tachometer-alt"></i>
                   <span>Dashboard</span></a>
+              <a class="nav-link" href="<?= base_url('hrd/kelola_kategori'); ?>">
+                  <i class="fas fa-passport"></i>
+                  <span>Kelola Kategori</span></a>
               <a class="nav-link" href="<?= base_url('hrd/kelola_kriteria'); ?>">
                   <i class="fas fa-passport"></i>
                   <span>Kelola Kriteria</span></a>
