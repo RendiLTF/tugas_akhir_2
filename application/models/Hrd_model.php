@@ -23,6 +23,12 @@ class Hrd_model extends CI_Model
         $this->db->delete('tb_karyawan', ['id_karyawan' => $id_karyawan]);
     }
 
+    public function deleteDataKategori($id_kategori)
+    {
+        // $this->db->where('id', $id);
+        $this->db->delete('tb_kategori', ['id_kategori' => $id_kategori]);
+    }
+
     public function deleteDataKriteria($id_kriteria)
     {
         // $this->db->where('id', $id);
@@ -73,6 +79,11 @@ class Hrd_model extends CI_Model
         return $this->db->get_where('tb_karyawan', ['id_karyawan' => $id_karyawan])->row_array();
     }
 
+    public function getDataKategoriById($id_kategori)
+    {
+        return $this->db->get_where('tb_kategori', ['id_kategori' => $id_kategori])->row_array();
+    }
+
     public function getDataKriteriaById($id_kriteria)
     {
         return $this->db->get_where('tb_kriteria', ['id_kriteria' => $id_kriteria])->row_array();
@@ -81,6 +92,12 @@ class Hrd_model extends CI_Model
     public function getDataSubKriteriaById($id_sub_kriteria)
     {
         return $this->db->get_where('tb_sub_kriteria', ['id_sub_kriteria' => $id_sub_kriteria])->row_array();
+    }
+
+    public function editDataKategori($id_kategori, $data)
+    {
+        $this->db->where('id_kategori', $id_kategori);
+        $this->db->update('tb_kategori', $data);
     }
 
     public function editDataKriteria($id_kriteria, $data)

@@ -30,6 +30,18 @@ class Hrd extends CI_Controller
         $this->load->view('templates/hrd_footer', $data);
     }
 
+    public function kelola_kategori()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['tb_kategori'] = $this->db->get('tb_kategori')->result_array();
+        $data['title'] = 'Kelola Kategori';
+        $this->load->view('templates/hrd_header', $data);
+        $this->load->view('templates/hrd_sidebar', $data);
+        $this->load->view('templates/hrd_topbar', $data);
+        $this->load->view('hrd/kelola_kategori', $data);
+        $this->load->view('templates/hrd_footer', $data);
+    }
+
     public function kelola_kriteria()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -41,6 +53,32 @@ class Hrd extends CI_Controller
         $this->load->view('templates/hrd_topbar', $data);
         $this->load->view('hrd/kelola_kriteria', $data);
         $this->load->view('templates/hrd_footer', $data);
+    }
+
+    public function tambah_kategori()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Tambah Kategori';
+        $this->form_validation->set_rules('nama_kategori', 'nama_kategori', 'required');
+        $this->form_validation->set_rules('bobot_kategori', 'bobot_kategori', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/hrd_header', $data);
+            $this->load->view('templates/hrd_sidebar', $data);
+            $this->load->view('templates/hrd_topbar', $data);
+            $this->load->view('hrd/tambah_kategori', $data);
+            $this->load->view('templates/hrd_footer', $data);
+        } else {
+            $nama_kategori = $this->input->post('nama_kategori');
+            $bobot_kategori = $this->input->post('bobot_kategori');
+
+            $data = array(
+                'nama_kategori' => $nama_kategori,
+                'bobot_kategori' => $bobot_kategori
+            );
+            $this->db->insert('tb_kategori', $data);
+            redirect('hrd/kelola_kategori');
+        }
     }
 
     public function tambah_kriteria()
@@ -70,6 +108,35 @@ class Hrd extends CI_Controller
             );
             $this->db->insert('tb_kriteria', $data);
             redirect('hrd/kelola_kriteria');
+        }
+    }
+
+    public function ubah_kategori($id_kategori)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['tb_kategori'] = $this->Hrd_model->getDataKategoriById($id_kategori);
+        $data['title'] = 'Ubah kategori';
+        $this->form_validation->set_rules('nama_kategori', 'nama_kategori', 'required');
+        $this->form_validation->set_rules('bobot_kategori', 'bobot_kategori', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/hrd_header', $data);
+            $this->load->view('templates/hrd_sidebar', $data);
+            $this->load->view('templates/hrd_topbar', $data);
+            $this->load->view('hrd/ubah_kategori', $data);
+            $this->load->view('templates/hrd_footer');
+        } else {
+            $id_kategori = $this->input->post('id_kategori');
+            $nama_kategori = $this->input->post('nama_kategori');
+            $bobot_kategori = $this->input->post('bobot_kategori');
+            $data = array(
+                'nama_kategori' => $nama_kategori,
+                'bobot_kategori' => $bobot_kategori
+            );
+            $this->Hrd_model->editDataKategori($id_kategori, $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" 
+                    role="alert">Data Kategori Berhasil di Ubah !');
+            redirect('hrd/kelola_kategori');
         }
     }
 
@@ -106,6 +173,13 @@ class Hrd extends CI_Controller
                     role="alert">Data Pendaftaran Berhasil di Ubag !');
             redirect('hrd/kelola_kriteria');
         }
+    }
+
+    public function delete_kategori($id_kategori)
+    {
+        // $this->Hrd_model->deleteDataSubKriteriByIdKategori($id_kategori);
+        $this->Hrd_model->deleteDataKategori($id_kategori);
+        redirect('hrd/kelola_kategori');
     }
 
     public function delete_kriteria($id_kriteria)
