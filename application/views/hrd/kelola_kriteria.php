@@ -42,9 +42,8 @@
                             <td><?= $p['jenis_kriteria']; ?></td>
                             <td><?= $p['tahun']; ?></td>
                             <td>
-                                <a class="btn btn-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="<?= base_url(); ?>hrd/ubah_kriteria/<?php echo $p['id_kriteria'] ?> "><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="<?= base_url(); ?>hrd/ubah_kriteria/<?php echo $p['id_kriteria'] ?> ">Perbaharui</a>
-                                <a class="btn btn-danger btn-sm tombol-hapus-kriteria" type="button" data-toggle="tooltip" data-placement="top" title="Delete" href="<?php base_url(); ?>hrd/delete_kriteria/ <?php echo $p['id_kriteria'] ?> "><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="<?= base_url(); ?>hrd/ubah_kriteria/<?= $p['id_kriteria'] ?> "><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-danger btn-sm tombol-hapus-kriteria" type="button" data-toggle="tooltip" data-placement="top" title="Delete" href="<?= base_url(); ?>hrd/delete_kriteria/<?= $p['id_kriteria'] ?> "><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php $i++; ?>
