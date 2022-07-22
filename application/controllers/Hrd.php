@@ -150,6 +150,8 @@ class Hrd extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['tb_kriteria'] = $this->Hrd_model->getDataKriteriaById($id_kriteria);
         $data['title'] = 'Ubah kriteria';
+        $data['tb_kategori'] = $this->db->get('tb_kategori')->result_array();
+        $this->form_validation->set_rules('id_kategori', 'id_kategori', 'required');
         $this->form_validation->set_rules('nama_kriteria', 'nama_kriteria', 'required');
         $this->form_validation->set_rules('bobot_kriteria', 'bobot_kriteria', 'required');
         $this->form_validation->set_rules('jenis_kriteria', 'jenis_kriteria', 'required');
@@ -163,11 +165,13 @@ class Hrd extends CI_Controller
             $this->load->view('templates/hrd_footer');
         } else {
             $id_kriteria = $this->input->post('id_kriteria');
+            $id_kategori = $this->input->post('id_kategori');
             $nama_kriteria = $this->input->post('nama_kriteria');
             $bobot_kriteria = $this->input->post('bobot_kriteria');
             $jenis_kriteria = $this->input->post('jenis_kriteria');
             $tahun = $this->input->post('tahun');
             $data = array(
+                'id_kategori' => $id_kategori,
                 'nama_kriteria' => $nama_kriteria,
                 'bobot_kriteria' => $bobot_kriteria,
                 'jenis_kriteria' => $jenis_kriteria,
