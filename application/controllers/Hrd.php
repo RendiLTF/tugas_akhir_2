@@ -84,7 +84,10 @@ class Hrd extends CI_Controller
     public function tambah_kriteria()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['tb_kategori'] = $this->db->get('tb_kategori')->result_array();
         $data['title'] = 'Tambah Kriteria';
+
+        $this->form_validation->set_rules('id_kategori', 'id_kategori', 'required');
         $this->form_validation->set_rules('nama_kriteria', 'nama_kriteria', 'required');
         $this->form_validation->set_rules('bobot_kriteria', 'bobot_kriteria', 'required');
         $this->form_validation->set_rules('jenis_kriteria', 'jenis_kriteria', 'required');
@@ -96,11 +99,13 @@ class Hrd extends CI_Controller
             $this->load->view('hrd/tambah_kriteria', $data);
             $this->load->view('templates/hrd_footer', $data);
         } else {
+            $id_kategori = $this->input->post('id_kategori');
             $nama_kriteria = $this->input->post('nama_kriteria');
             $bobot_kriteria = $this->input->post('bobot_kriteria');
             $jenis_kriteria = $this->input->post('jenis_kriteria');
 
             $data = array(
+                'id_kategori' => $id_kategori,
                 'nama_kriteria' => $nama_kriteria,
                 'bobot_kriteria' => $bobot_kriteria,
                 'jenis_kriteria' => $jenis_kriteria,

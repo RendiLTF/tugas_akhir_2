@@ -17,6 +17,16 @@
         <div class="card-body">
             <form action="<?= base_url('hrd/tambah_kriteria'); ?>" method="post">
                 <div class="form-group row">
+                    <label for="id_kategori" class="col-sm-2 col-form-label">ID Kategori</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="id_kategori" name="id_kategori" value="">
+                            <?php foreach ($tb_kategori as $p) : ?>
+                                <option><?= $p['id_kategori']; ?> - <?= $p['nama_kategori']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="nama_kriteria" class="col-sm-2 col-form-label">Nama Kriteria</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="nama_kriteria" name="nama_kriteria">
