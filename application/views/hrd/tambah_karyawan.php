@@ -77,7 +77,6 @@
                     <div class="col-sm-10">
                         <select class="form-control" id="departemen" name="departemen">
                             <option></option>
-
                             <option>Kasir</option>
                             <option>Koki</option>
                             <option>Waiters</option>

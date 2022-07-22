@@ -538,8 +538,21 @@ class Hrd extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Hasil Perhitungan Penilaian';
         $data['kriteria'] = $this->Kriteria_model->getKriteria();
-        // Get Data Karyawan
-        $karyawan = $this->Karyawan_model->getDataKaryawanDiNilaiAll();
+        // Get Data Karyawan]
+        $departemen = $this->input->post('departemen');
+        if ($departemen == 'All') {
+            $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanDiNilaiAll();
+        } else {
+            $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanDiNilai($departemen);
+
+            if ($karyawan == null) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Data Karyawan Tidak Ditemukan!
+                </div>');
+                redirect('hrd/kelola_penilaian_karyawan');
+            }
+        };
+        //$karyawan = $this->Karyawan_model->getDataKaryawanDiNilaiAll();
         $bobot    = $this->Kriteria_model->getKriteriaBobot(); // bobot di ambil dari function gtKriteriaBobot model kriteria_model
         $jenis    = $this->Kriteria_model->getKriteriaJenis(); // bobot di ambil dari function gtKriteriaJenis model kriteria_model
 
