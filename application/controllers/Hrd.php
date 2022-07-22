@@ -45,7 +45,7 @@ class Hrd extends CI_Controller
     public function kelola_kriteria()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['tb_kriteria'] = $this->db->get('tb_kriteria')->result_array();
+        $data['tb_kriteria'] = $this->Kriteria_model->getDataKriteria();
         $data['cek'] = $this->Kriteria_model->cekIfUsed();
         $data['title'] = 'Kelola Kriteria';
         $this->load->view('templates/hrd_header', $data);

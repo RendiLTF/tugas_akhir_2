@@ -6,13 +6,13 @@ class Kriteria_model extends CI_Model
   {
     $this->db->select('*')
       ->from('tb_kriteria')
-      ->where('tahun',date('Y'))
+      ->where('tahun', date('Y'))
       ->order_by('jenis_kriteria', 'ASC')
       ->order_by('id_kriteria', 'ASC');
     $query = $this->db->get();
     return $query->result_array();
   }
-  
+
 
   public function getKriteriaBobot()
   {
@@ -67,6 +67,15 @@ class Kriteria_model extends CI_Model
     return $result->row_array();
   }
 
+  public function getDataKriteria()
+  {
+    $this->db->select('*')
+      ->from('tb_kriteria')
+      ->join('tb_kategori', 'tb_kriteria.id_kategori = tb_kategori.id_kategori');
+    $result = $this->db->get();
+    return $result->result_array();
+  }
+
   public function getDataSubKriteria()
   {
     $this->db->select('*')
@@ -81,7 +90,7 @@ class Kriteria_model extends CI_Model
     $this->db->select('*')
       ->from('tb_kriteria')
       ->join('tb_karyawan', 'tb_kriteria.tahun = tb_karyawan.status')
-      ->where('tb_kriteria.tahun',date("Y"));
+      ->where('tb_kriteria.tahun', date("Y"));
     $query = $this->db->get();
     return $query->result_array();
   }

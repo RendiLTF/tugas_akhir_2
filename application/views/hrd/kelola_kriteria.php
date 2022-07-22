@@ -22,6 +22,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">ID Kriteria</th>
+                        <th scope="col">Kategori</th>
                         <th scope="col">Nama Kriteria</th>
                         <th scope="col">Bobot</th>
                         <th scope="col">Jenis Kriteria</th>
@@ -35,6 +36,7 @@
                         <tr>
                             <th scope="row"><?= $i; ?></th>
                             <td><?= $p['id_kriteria']; ?></td>
+                            <td><?= $p['nama_kategori']; ?></td>
                             <td><?= $p['nama_kriteria']; ?></td>
                             <td><?= $p['bobot_kriteria']; ?></td>
                             <td><?= $p['jenis_kriteria']; ?></td>
