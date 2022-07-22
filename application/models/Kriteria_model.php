@@ -43,6 +43,34 @@ class Kriteria_model extends CI_Model
     return $query->result_array();
   }
 
+  public function getKategoriByID($id_karyawan)
+  {
+    $this->db->select("*, SUM(tb_sub_kriteria.nilai_sub_kriteria) AS 'total_moora', COUNT(tb_kategori.id_kategori) AS 'total_kriteria'")
+      ->from('tb_kategori')
+      ->join('tb_kriteria', 'tb_kriteria.id_kategori = tb_kategori.id_kategori')
+      ->join('tb_sub_kriteria', 'tb_sub_kriteria.id_kriteria = tb_kriteria.id_kriteria')
+      ->join('tb_penilaian', 'tb_sub_kriteria.id_sub_kriteria = tb_penilaian.id_sub_kriteria')
+      ->join('tb_karyawan', 'tb_penilaian.id_karyawan = tb_karyawan.id_karyawan')
+      ->where('tb_karyawan.id_karyawan', $id_karyawan)
+      ->where('tb_penilaian.tahun', date("Y"))
+      ->group_by('tb_kategori.id_kategori');
+    $result = $this->db->get();
+    return $result->result_array();
+  }
+
+  public function getKriteriaByID($id_karyawan)
+  {
+    $this->db->select('*')
+      ->from('tb_kriteria')
+      ->join('tb_sub_kriteria', 'tb_sub_kriteria.id_kriteria = tb_kriteria.id_kriteria')
+      ->join('tb_penilaian', 'tb_sub_kriteria.id_sub_kriteria = tb_penilaian.id_sub_kriteria')
+      ->join('tb_karyawan', 'tb_penilaian.id_karyawan = tb_karyawan.id_karyawan')
+      ->where('tb_karyawan.id_karyawan', $id_karyawan)
+      ->where('tb_penilaian.tahun', date("Y"));
+    $result = $this->db->get();
+    return $result->result_array();
+  }
+
   public function getSubKriteriaByID($id_karyawan)
   {
     $this->db->select('*')

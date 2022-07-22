@@ -41,34 +41,34 @@
             <?php } else { ?>
                 <a class="btn btn-primary btn-sm rounded-0 mb-3" type="a" data-toggle="tooltip" data-placement="top" title="Input" href="<?= base_url('kepala_bagian/tambah_penilaian'); ?>"><i class="fa fa-edit"></i></a>
             <?php } ?>
-
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama Karyawan</th>
-                        <?php foreach ($kriteria as $k) {
-                            echo '<th scope="col">' . $k['nama_kriteria'] . '</th>';
-                        } ?>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($allkarywan as $d) {
-                        echo '
+            <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Karyawan</th>
+                            <?php foreach ($kriteria as $k) {
+                                echo '<th scope="col">' . $k['nama_kriteria'] . '</th>';
+                            } ?>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($allkarywan as $d) {
+                            echo '
                                 <tr>
                                 <th scope="row">' . $i . '</th>
                                 <td>' . $d['nama_karyawan'] . '</td>';
-                        $subkriteria = $this->Kriteria_model->getSubKriteriaByID($d['id_karyawan']);
-                        if (!empty($subkriteria)) {
-                            foreach ($subkriteria as $s) {
-                                echo '<td>' . $s['nama_sub_kriteria'] . '</td>';
-                            }
-                            $rank = $this->Karyawan_model->CekKaryawanOnRank($d['id_karyawan'], $departemen);
-                            if (empty($rank)) {
-                                echo ' 
+                            $subkriteria = $this->Kriteria_model->getSubKriteriaByID($d['id_karyawan']);
+                            if (!empty($subkriteria)) {
+                                foreach ($subkriteria as $s) {
+                                    echo '<td>' . $s['nama_sub_kriteria'] . '</td>';
+                                }
+                                $rank = $this->Karyawan_model->CekKaryawanOnRank($d['id_karyawan'], $departemen);
+                                if (empty($rank)) {
+                                    echo ' 
                                             <td>
                                                 <a class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Edit" href="' . base_url('kepala_bagian/ubah_penilaian/' . $d['id_karyawan']) . '">
                                                     <i class="fa fa-edit"></i>
@@ -77,8 +77,8 @@
                                                     <i class="fa fa-trash"></i> 
                                                 </a>
                                             </td>';
-                            } else {
-                                echo '
+                                } else {
+                                    echo '
                                             <td>
                                                 <a class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Disbled" href="#">
                                                     <i class="fa fa-edit"></i>
@@ -87,18 +87,19 @@
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>';
+                                }
+                            } else {
+                                foreach ($kriteria as $k) {
+                                    echo '<td><small class="text-danger">Belum Di Nilai</small></td>';
+                                }
+                                echo '<td><small>-</small></td>';
                             }
-                        } else {
-                            foreach ($kriteria as $k) {
-                                echo '<td><small class="text-danger">Belum Di Nilai</small></td>';
-                            }
-                            echo '<td><small>-</small></td>';
-                        }
-                        echo '</tr>';
-                        $i++;
-                    } ?>
-                </tbody>
-            </table>
+                            echo '</tr>';
+                            $i++;
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

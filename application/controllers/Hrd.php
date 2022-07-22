@@ -9,7 +9,7 @@ class Hrd extends CI_Controller
         parent::__construct();
 
         $this->load->model('Hrd_model');
-        $this->load->model('Kriteria_model');
+        $this->load->model('Kategori_model');
         $this->load->model('Kriteria_model');
         $this->load->model('Kabag_model');
         $this->load->model('Karyawan_model');
@@ -522,6 +522,7 @@ class Hrd extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Kelola Penilaian Karyawan';
+        $data['kategori'] = $this->Kategori_model->getKategori();
         $data['kriteria'] = $this->Kriteria_model->getKriteria();
         $data['ceknilai'] = $this->Karyawan_model->getDataKaryawanDiNilaiAll();
         $data['allkarywan'] = $this->db->get('tb_karyawan')->result_array();
