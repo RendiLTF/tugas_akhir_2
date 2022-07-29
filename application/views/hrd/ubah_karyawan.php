@@ -78,6 +78,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk Kerja</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" value="<?= $tb_karyawan['tanggal_masuk']; ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="posisi" class="col-sm-2 col-form-label">Posisi</label>
                     <div class="col-sm-10">
                         <!-- <input type="text" class="form-control" id="posisi" name="posisi" value="<?= $tb_karyawan['posisi']; ?>" readonly> -->

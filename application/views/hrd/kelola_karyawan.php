@@ -29,6 +29,8 @@
                             <th scope="col">Tanggal Lahir</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">Departemen</th>
+                            <th scope="col">Tanggal Masuk Karyawan</th>
+                            <th scope="col">Lama Bekerja</th>
                             <th scope="col">Posisi</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -46,6 +48,8 @@
                                 <td><?= tanggal($p['tgl_lahir']); ?></td>
                                 <td><?= $p['alamat']; ?></td>
                                 <td><?= $p['departemen']; ?></td>
+                                <td><?= tanggal($p['tanggal_masuk']); ?></td>
+                                <td><?= date_difference($p['tanggal_masuk'], date('Y-m-d')); ?></td>
                                 <td><?= $p['posisi']; ?></td>
                                 <td>
                                     <a class="btn btn-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="<?= base_url(); ?>hrd/ubah_karyawan/<?php echo $p['id_karyawan'] ?> "><i class="fa fa-edit"></i></a>

@@ -80,8 +80,13 @@
                             <option>Kasir</option>
                             <option>Koki</option>
                             <option>Waiters</option>
-
                         </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk Kerja</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk">
                     </div>
                 </div>
                 <div class="form-group row">

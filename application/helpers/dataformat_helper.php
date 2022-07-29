@@ -1,12 +1,13 @@
 <?php
-function rupiah($angka){
-	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
-	return $hasil_rupiah;
- 
+function rupiah($angka)
+{
+    $hasil_rupiah = "Rp " . number_format($angka, 2, ',', '.');
+    return $hasil_rupiah;
 }
 
 if (!function_exists('bulan')) {
-    function bulan($bulan){
+    function bulan($bulan)
+    {
         switch ($bulan) {
             case 1:
                 $bulan = "Januari";
@@ -51,11 +52,35 @@ if (!function_exists('bulan')) {
         return $bulan;
     }
 }
- 
+
 if (!function_exists('tanggal')) {
-    function tanggal($tanggal) {
-        $a = explode('-',$tanggal);
-        $tanggal = $a['2']." ".bulan($a['1'])." ".$a['0'];
+    function tanggal($tanggal)
+    {
+        if (empty($tanggal)) {
+            return "";
+        }
+        $a = explode('-', $tanggal);
+        $tanggal = $a['2'] . " " . bulan($a['1']) . " " . $a['0'];
         return $tanggal;
+    }
+}
+
+if (!function_exists('date_difference')) {
+    function date_difference($date1, $date2)
+    {
+        $datetime1 = new DateTime($date1);
+        $datetime2 = new DateTime($date2);
+        $interval = $datetime1->diff($datetime2);
+        $diffInDays    = $interval->d;
+        $diffInMonths  = $interval->m;
+        $diffInYears   = $interval->y;
+
+        if ($diffInYears == 0) {
+            if ($diffInMonths == 0) {
+                return $diffInDays . " hari";
+            }
+            return $diffInMonths . " bulan, " . $diffInDays . " hari";
+        }
+        return $diffInYears . " Tahun, " . $diffInMonths . " Bulan, " . $diffInDays . " Hari";
     }
 }

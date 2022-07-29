@@ -311,6 +311,7 @@ class Hrd extends CI_Controller
         $this->form_validation->set_rules('tgl_lahir', 'tgl_lahir', 'required');
         $this->form_validation->set_rules('alamat', 'alamat', 'required');
         $this->form_validation->set_rules('departemen', 'departemen', 'required');
+        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required');
         $this->form_validation->set_rules('no_ktp', 'no_ktp', 'required');
         $this->form_validation->set_rules('posisi', 'posisi', 'required');
 
@@ -321,7 +322,6 @@ class Hrd extends CI_Controller
             $this->load->view('hrd/tambah_karyawan', $data);
             $this->load->view('templates/hrd_footer', $data);
         } else {
-            // $nik            = $this->input->post('nik');
             $nik            = $this->Karyawan_model->CreateCode();
             $nama_karyawan  = $this->input->post('nama_karyawan');
             $jenis_kelamin  = $this->input->post('jenis_kelamin');
@@ -329,6 +329,7 @@ class Hrd extends CI_Controller
             $tgl_lahir      = $this->input->post('tgl_lahir');
             $alamat         = $this->input->post('alamat');
             $departemen     = $this->input->post('departemen');
+            $tanggal_masuk     = $this->input->post('tanggal_masuk');
             $no_ktp         = $this->input->post('no_ktp');
             $posisi         = $this->input->post('posisi');
 
@@ -340,6 +341,7 @@ class Hrd extends CI_Controller
                 'tgl_lahir'     => $tgl_lahir,
                 'alamat'        => $alamat,
                 'departemen'    => $departemen,
+                'tanggal_masuk' => $tanggal_masuk,
                 'no_ktp'        => $no_ktp,
                 'posisi'        => $posisi,
             );
@@ -361,6 +363,7 @@ class Hrd extends CI_Controller
         $this->form_validation->set_rules('tgl_lahir', 'tgl_lahir', 'required');
         $this->form_validation->set_rules('alamat', 'alamat', 'required');
         $this->form_validation->set_rules('departemen', 'departemen', 'required');
+        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/hrd_header', $data);
@@ -378,6 +381,7 @@ class Hrd extends CI_Controller
             $tgl_lahir = $this->input->post('tgl_lahir');
             $alamat = $this->input->post('alamat');
             $departemen = $this->input->post('departemen');
+            $tanggal_masuk = $this->input->post('tanggal_masuk');
             $posisi = $this->input->post('posisi');
 
 
@@ -391,6 +395,7 @@ class Hrd extends CI_Controller
                 'tgl_lahir' => $tgl_lahir,
                 'alamat' => $alamat,
                 'departemen' => $departemen,
+                'tanggal_masuk' => $tanggal_masuk,
                 'posisi' => $posisi,
             );
 
