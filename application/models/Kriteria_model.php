@@ -7,6 +7,7 @@ class Kriteria_model extends CI_Model
     $this->db->select('*')
       ->from('tb_kriteria')
       ->where('tahun', date('Y'))
+      ->join('tb_kategori', 'tb_kategori.id_kategori = tb_kriteria.id_kategori')
       ->order_by('jenis_kriteria', 'ASC')
       ->order_by('id_kriteria', 'ASC');
     $query = $this->db->get();

@@ -19,56 +19,54 @@
                 <div class="form-group row">
                     <label for="nama_karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_karyawan" value="<?= $karyawan['nama_karyawan'];?>" name="nama_karyawan" readonly>
-                        <input type="hidden"  name="id_karyawan" value="<?= $karyawan['id_karyawan'];?>">
+                        <input type="text" class="form-control" id="nama_karyawan" value="<?= $karyawan['nama_karyawan']; ?>" name="nama_karyawan" readonly>
+                        <input type="hidden" name="id_karyawan" value="<?= $karyawan['id_karyawan']; ?>">
                     </div>
                 </div>
-               <?php 
-                foreach ($kriteria as $d) 
-                {
-                    echo'
+                <?php
+                foreach ($kriteria as $d) {
+                    echo '
                         <div class="form-group row">
-                            <label for="posisi" class="col-sm-2 col-form-label">'.$d['nama_kriteria'].'</label>
+                            <label for="posisi" class="col-sm-2 col-form-label">' . $d['nama_kategori'] . ' (' . $d['nama_kriteria'] . ')' . '</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="id_sub_kriteria[]" required>';
-                                            $query = $this->Kriteria_model->getSubKriteria($d['id_kriteria']);
-                                            foreach ($query as $q):
-                                                $cek = $this->Penilaian_model->isNotNull($karyawan['id_karyawan'],$q['id_sub_kriteria']);
-                                                if (!empty($cek)) { 
-                                                     if ($cek['id_sub_kriteria'] == $q['id_sub_kriteria']) {
-                                                        echo'<option value="'.$q['id_sub_kriteria'].'" selected>'.$q['nama_sub_kriteria'].'</option>';
-                                                    }
-                                                }else{
-                                                    echo'<option value="'.$q['id_sub_kriteria'].'">'.$q['nama_sub_kriteria'].'</option>';
-                                                }
-                                            endforeach; 
-                                echo'                       
+                    $query = $this->Kriteria_model->getSubKriteria($d['id_kriteria']);
+                    foreach ($query as $q) :
+                        $cek = $this->Penilaian_model->isNotNull($karyawan['id_karyawan'], $q['id_sub_kriteria']);
+                        if (!empty($cek)) {
+                            if ($cek['id_sub_kriteria'] == $q['id_sub_kriteria']) {
+                                echo '<option value="' . $q['id_sub_kriteria'] . '" selected>' . $q['nama_sub_kriteria'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="' . $q['id_sub_kriteria'] . '">' . $q['nama_sub_kriteria'] . '</option>';
+                        }
+                    endforeach;
+                    echo '                       
                                     </select>
                                 </div>
-                            </div>'; } ?>
-                            <?php 
-                                foreach ($kriteria as $d) 
-                                {
-                                    $query = $this->Kriteria_model->getSubKriteria($d['id_kriteria']); 
-                                    foreach ($query as $q)
-                                    {
-                                        $cek = $this->Penilaian_model->isNotNull($karyawan['id_karyawan'],$q['id_sub_kriteria']);
-                                        if (!empty($cek)) {
-                                              if ($cek['id_sub_kriteria'] == $q['id_sub_kriteria']) {
-                                                echo'<input type="hidden" name="id_penilaian[]" value="'.$cek['id_penilaian'].'">';
-                                             }
-                                        } 
-                                    }
-                                } 
-                            ?>
+                            </div>';
+                } ?>
+                <?php
+                foreach ($kriteria as $d) {
+                    $query = $this->Kriteria_model->getSubKriteria($d['id_kriteria']);
+                    foreach ($query as $q) {
+                        $cek = $this->Penilaian_model->isNotNull($karyawan['id_karyawan'], $q['id_sub_kriteria']);
+                        if (!empty($cek)) {
+                            if ($cek['id_sub_kriteria'] == $q['id_sub_kriteria']) {
+                                echo '<input type="hidden" name="id_penilaian[]" value="' . $cek['id_penilaian'] . '">';
+                            }
+                        }
+                    }
+                }
+                ?>
 
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Done</button>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Done</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
