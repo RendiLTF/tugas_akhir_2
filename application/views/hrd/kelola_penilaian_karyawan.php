@@ -30,7 +30,18 @@
                     </form>
                 <?php
                 } else { ?>
-                    <a class="btn btn-primary btn-sm rounded-0 mb-3" type="a" data-toggle="tooltip" data-placement="top" title="Hitung Penilaian" href="<?= base_url('hrd/hitung_penilaian'); ?>">Lihat Hasil Penilaian <i class="fas fa-eye"></i></a>
+                    <form action="<?= base_url('hrd/hitung_penilaian'); ?>" method="post">
+                        <div class="d-flex">
+                            <button class="btn btn-primary btn-sm rounded-0 mb-3" type="a" data-toggle="tooltip" data-placement="top" title="Hitung Penilaian" type="submit">Lihat Hasil Penilaian <i class="fas fa-eye"></i></button>
+                            <select class="form-control-sm ml-2" id="departemen" name="departemen">
+                                <option>All</option>
+                                <option>Kasir</option>
+                                <option>Koki</option>
+                                <option>Waiters</option>
+                            </select>
+                        </div>
+                    </form>
+
                 <?php }
                 ?>
             <?php } else { ?>
