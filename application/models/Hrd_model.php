@@ -148,6 +148,16 @@ class Hrd_model extends CI_Model
         }
     }
 
+    public function hitungkategori()
+    {
+        $query = $this->db->get('tb_kategori');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
     public function hitungkriteria()
     {
         $query = $this->db->get('tb_kriteria');
