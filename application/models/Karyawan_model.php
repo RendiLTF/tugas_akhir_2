@@ -55,6 +55,28 @@ class Karyawan_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getDataKaryawanHasilAll()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_ranking');
+        $this->db->join('tb_karyawan', 'tb_ranking.id_karyawan = tb_karyawan.id_karyawan');
+        $this->db->where('status', date("Y"));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
+    public function getDataKaryawanHasil($departemen)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_ranking');
+        $this->db->join('tb_karyawan', 'tb_ranking.id_karyawan = tb_karyawan.id_karyawan');
+        $this->db->where('status', date("Y"));
+        $this->db->where('departemen', $departemen);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getDataKaryawanDepatemenAll($departemen)
     {
         $this->db->select('*');
