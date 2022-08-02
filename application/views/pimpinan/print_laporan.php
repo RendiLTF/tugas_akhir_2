@@ -52,7 +52,7 @@
 			<th> NAMA KARYAWAN </th>
 			<th> DEPARTEMEN </th>
 			<th> NILAI YI </th>
-			<th> BONUS </th>
+			<th> STATUS </th>
 		</tr>
 		<?php
 		$no = 0;
