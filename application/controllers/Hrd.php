@@ -547,9 +547,17 @@ class Hrd extends CI_Controller
         // Get Data Karyawan]
         $departemen = $this->input->post('departemen');
         if ($departemen == 'All') {
-            $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanDiNilaiAll();
+            if ($this->Karyawan_model->CekRankingIfNullAll() != null) {
+                $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanHasilAll();
+            } else {
+                $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanDiNilaiAll();
+            }
         } else {
-            $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanDiNilai($departemen);
+            if ($this->Karyawan_model->CekRankingIfNullAll() != null) {
+                $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanHasil($departemen);
+            } else {
+                $karyawan = $data['karyawan'] = $this->Karyawan_model->getDataKaryawanDiNilai($departemen);
+            }
 
             if ($karyawan == null) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
