@@ -39,7 +39,7 @@
 	<P></P>
 
 	<p><b>B. Kegiatan</b></p>
-	Penilaian Karyawan
+	Penilaian Karyawan Periode <?= date('Y') ?>
 	<P></P>
 
 	<p><B>C. Laporan Kegiatan</B></p>
@@ -78,6 +78,21 @@
 		}
 		?>
 	</table>
+	<div class="row mt-5">
+		<div class="col text-center">
+			<p class="mb-5"><b>Dinilai</b></p>
+			<p class="pt-5"><u>Kepala Bagian</u></p>
+		</div>
+		<div class="col text-center">
+			<p class="mb-5"><b>Disetujui</b></p>
+			<p class="pt-5"><u>HRD</u></p>
+		</div>
+		<div class="col-12 mt-5 text-center">
+			<p class="mb-5"><b>Mengetahui</b></p>
+			<p class="pt-5"><u>Pimpinan</u></p>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		window.print();
 	</script>
