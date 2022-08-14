@@ -304,6 +304,9 @@ class Hrd extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Tambah Karyawan';
+        $time = strtotime("-17 year", time());
+        $data['date'] = date("Y-m-d", $time);
+
         // $this->load->model('Karyawan_model');
         $this->form_validation->set_rules('nama_karyawan', 'nama_karyawan', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'jenis_kelamin', 'required');
@@ -355,6 +358,9 @@ class Hrd extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['tb_karyawan'] = $this->Hrd_model->getDataKaryawanById($id_karyawan);
         $data['title'] = 'Ubah Karyawan';
+        $time = strtotime("-17 year", time());
+        $data['date'] = date("Y-m-d", $time);
+
         $this->form_validation->set_rules('nik', 'nik', 'required');
         $this->form_validation->set_rules('no_ktp', 'no_ktp', 'required');
         $this->form_validation->set_rules('nama_karyawan', 'nama_karyawan', 'required');

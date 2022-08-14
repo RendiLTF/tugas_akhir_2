@@ -63,7 +63,7 @@
                 <div class="form-group row">
                     <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
+                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" max="<?= $date ?>">
                     </div>
                 </div>
                 <div class="form-group row">
