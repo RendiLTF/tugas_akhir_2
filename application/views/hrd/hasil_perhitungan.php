@@ -7,6 +7,71 @@
 			<li class="breadcrumb-item active" aria-current="page">Hasil Perhitungan</li>
 		</ol>
 	</nav>
+
+	<div class="card shadow mb-5">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-info">Peringkat Karyawan</h6>
+		</div>
+		<div class="card-body">
+			<?php
+			$cekRank = $this->Karyawan_model->CekRankingIfNullAll();
+			if (empty($cekRank)) {
+				echo '<form action="' . base_url("hrd/simpan_peringkat") . '" method="post">';
+			} else {
+				echo '<form action="' . base_url("hrd/reset_peringkat") . '" method="post">';
+			}
+			?>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover" style="width:100%">
+					<thead>
+						<tr class="bg-info text-white">
+							<th scope="col">Nama Karyawan</th>
+							<th scope="col">Departemen</th>
+							<th scope="col">Yi</th>
+							<th scope="col">Peringkat</th>
+							<th scope="col">Periode Penilaian</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						//  Fungsi untuk melakukan sort
+						array_multisort(array_column($matrixYi, 3), SORT_DESC, $matrixYi);
+						$x = count(reset($matrixYi));
+						$y = count($matrixYi);
+						for ($i = 0; $i < $y; $i++) {
+							$kar = $this->Karyawan_model->getDataKaryawanByID($matrixYi[$i][0]);
+							echo "<tr>";
+							echo '<td>' . $kar['nama_karyawan'] . '</td>';
+							echo '<td>' . $kar['departemen'] . '</td>';
+							echo '<td>' . round($matrixYi[$i][3], 5) . '</td>';
+							echo '<td>', $i + 1 . '</td>';
+							echo '<td>' . $kar['status'] . '</td>';
+							echo "</tr>";
+							echo '
+							 	<input type="hidden" name="id_karyawan[]" value="', $matrixYi[$i][0] . '">
+								<input type="hidden" name="departemen[]" value="', $kar['departemen'] . '">
+							 	<input type="hidden" name="yi[]" value="', round($matrixYi[$i][3], 5) . '">
+								<input type="hidden" name="peringkat[]" value="', $i + 1 . '">
+							 ';
+						}
+						?>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<div class="text-center">
+				<?php
+				if (empty($cekRank)) {
+					echo '<button type="submit" class="btn btn-info  px-5 py-2">Simpan Peringkat</button>';
+				} else {
+					echo '<button type="submit" class="btn btn-warning  px-5 py-2">Reset Peringkat</button>';
+				}
+				?>
+			</div>
+			</form>
+		</div>
+	</div>
+
 	<div class="card shadow mb-5">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-info">moora Nilai</h6>
@@ -176,67 +241,7 @@
 		</div>
 	</div>
 
-	<div class="card shadow mb-5">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-info">Peringkat Karyawan</h6>
-		</div>
-		<div class="card-body">
-			<?php
-			$cekRank = $this->Karyawan_model->CekRankingIfNullAll();
-			if (empty($cekRank)) {
-				echo '<form action="' . base_url("hrd/simpan_peringkat") . '" method="post">';
-			} else {
-				echo '<form action="' . base_url("hrd/reset_peringkat") . '" method="post">';
-			}
-			?>
-			<div class="table-responsive">
-				<table class="table table-bordered table-hover" style="width:100%">
-					<thead>
-						<tr class="bg-info text-white">
-							<th scope="col">Nama Karyawan</th>
-							<th scope="col">Departemen</th>
-							<th scope="col">Yi</th>
-							<th scope="col">Peringkat</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php
-						//  Fungsi untuk melakukan sort
-						array_multisort(array_column($matrixYi, 3), SORT_DESC, $matrixYi);
-						$x = count(reset($matrixYi));
-						$y = count($matrixYi);
-						for ($i = 0; $i < $y; $i++) {
-							$kar = $this->Karyawan_model->getDataKaryawanByID($matrixYi[$i][0]);
-							echo "<tr>";
-							echo '<td>' . $kar['nama_karyawan'] . '</td>';
-							echo '<td>' . $kar['departemen'] . '</td>';
-							echo '<td>' . round($matrixYi[$i][3], 5) . '</td>';
-							echo '<td>', $i + 1 . '</td>';
-							echo "</tr>";
-							echo '
-							 	<input type="hidden" name="id_karyawan[]" value="', $matrixYi[$i][0] . '">
-								<input type="hidden" name="departemen[]" value="', $kar['departemen'] . '">
-							 	<input type="hidden" name="yi[]" value="', round($matrixYi[$i][3], 5) . '">
-								<input type="hidden" name="peringkat[]" value="', $i + 1 . '">
-							 ';
-						}
-						?>
-					</tbody>
-				</table>
-			</div>
-			<br>
-			<div class="text-center">
-				<?php
-				if (empty($cekRank)) {
-					echo '<button type="submit" class="btn btn-info  px-5 py-2">Simpan Peringkat</button>';
-				} else {
-					echo '<button type="submit" class="btn btn-warning  px-5 py-2">Reset Peringkat</button>';
-				}
-				?>
-			</div>
-			</form>
-		</div>
-	</div>
+
 </div>
 <!-- /.container-fluid -->
 
