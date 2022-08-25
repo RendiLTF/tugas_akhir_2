@@ -315,7 +315,7 @@ class Hrd extends CI_Controller
         $this->form_validation->set_rules('alamat', 'alamat', 'required');
         $this->form_validation->set_rules('departemen', 'departemen', 'required');
         $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required');
-        $this->form_validation->set_rules('no_ktp', 'no_ktp', 'required');
+        $this->form_validation->set_rules('no_ktp', 'no_ktp', 'required|is_unique[tb_karyawan.no_ktp]');
         $this->form_validation->set_rules('posisi', 'posisi', 'required');
 
         if ($this->form_validation->run() == false) {

@@ -26,6 +26,9 @@
                     <label for="no_ktp" class="col-sm-2 col-form-label">No KTP</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="no_ktp" name="no_ktp">
+                        <?php if (form_error('no_ktp') != '') : ?>
+                            <span class="small text-danger">KTP sudah terdaftar</span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="form-group row">
